@@ -7,7 +7,7 @@ let shiftY = null;
 let sound = new Audio('./assets/peter-griffins-laugh.mp3');
 
 tomato.addEventListener('mousedown', (e) => startDrag(e));
-tomato.addEventListener('touchmove', (e) => startDrag(e));
+tomato.addEventListener('touchstart', (e) => startDrag(e));
 
 const startDrag = (e) => {
   shiftX = e.clientX - tomato.getBoundingClientRect().left;
