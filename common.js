@@ -10,13 +10,13 @@ tomato.addEventListener('mousedown', (e) => startDrag(e));
 tomato.addEventListener('touchstart', (e) => startDrag(e));
 
 const startDrag = (e) => {
-  shiftX = e.clientX - tomato.getBoundingClientRect().left;
-  shiftY = e.clientY - tomato.getBoundingClientRect().top;
+  shiftX = (e.clientX || e.touches[0].clientX) - tomato.getBoundingClientRect().left;
+  shiftY = (e.clientY || e.touches[0].clientY) - tomato.getBoundingClientRect().top;
 
   tomato.src = './assets/tomato_peter.png';
   sound.play();
 
-  moveAt(e.pageX, e.pageY);
+  moveAt(e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY);
   box.addEventListener('mousemove', onmouseMove);
 };
 
@@ -41,7 +41,7 @@ sound.addEventListener('timeupdate', () => {
   }
 });
 
-const onmouseMove = (e) => moveAt(e.pageX, e.pageY);
+const onmouseMove = (e) => moveAt(e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY);
 
 const moveAt = (pageX, pageY) => {
   tomato.style.top = pageY - shiftY + 'px';
