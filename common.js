@@ -18,6 +18,7 @@ const startDrag = (e) => {
 
   moveAt(e.pageX || e.touches[0].pageX, e.pageY || e.touches[0].pageY);
   box.addEventListener('mousemove', onmouseMove);
+  box.addEventListener('touchmove', onmouseMove);
 };
 
 const stopMove = () => {
@@ -27,6 +28,7 @@ const stopMove = () => {
   sound.currentTime = 0;
 
   box.removeEventListener('mousemove', onmouseMove);
+  box.removeEventListener('touchmove', onmouseMove);
 };
 
 tomato.addEventListener('mouseup', stopMove);
